@@ -34,13 +34,13 @@ $loc = $loc.Path
 Copy-Item tmp\user.js $loc
 
 $WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$Home\Desktop\arkenfox.lnk")
+$Shortcut = $WshShell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\arkenfox.lnk")
 $Shortcut.TargetPath = "$af\firefox.exe"
 $Shortcut.Save()
 
 remove-item tmp -recurse -force
 
-$run = [Windows.MessageBox]::Show("arkenfox is now installed & a shortcut has been created on your desktop. Would you like me to open arkenfox now?", "Open arkenfox?", 4, 32)
+$run = [Windows.MessageBox]::Show("arkenfox is now installed & a shortcut has been created in the Start Menu. Would you like me to open arkenfox now?", "Open arkenfox?", 4, 32)
 
 if ($run -eq 6) {
     Start-Process -FilePath "$af\firefox.exe"
